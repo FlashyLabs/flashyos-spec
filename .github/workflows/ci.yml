@@ -15,6 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Every file a reader is promised is present
+        # Explicit even though this job is ubuntu-only: a matrix added later
+        # would break it silently, and the rule is about the script, not the
+        # runner it happens to be on today.
+        shell: bash
         run: |
           set -euo pipefail
           for f in README.md LICENSE SECURITY.md CONTRIBUTING.md CODE_OF_CONDUCT.md SUPPORT.md; do
