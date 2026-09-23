@@ -9,26 +9,16 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node: ['20', '22', '24']
+  structure:
+    name: The shell is intact (no code here yet)
+    runs-on: ubuntu-latest
     steps:
-      # Full history. Several checks here ask an ancestry question, and a
-      # shallow clone answers it WRONGLY rather than refusing: `git merge-base
-      # --is-ancestor` exits non-zero for a commit outside the graft window,
-      # which is byte-identical to "not an ancestor".
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-
-      - run: npm ci
-      # No tests yet: this job proves the package installs and loads.
-      - run: node -e "import(process.env.npm_package_name || '.')"
+      - uses: actions/checkout@v5
+      - name: Every file a reader is promised is present
+        run: |
+          set -euo pipefail
+          for f in README.md LICENSE SECURITY.md CONTRIBUTING.md CODE_OF_CONDUCT.md SUPPORT.md; do
+            test -s "$f" || { echo "missing or empty: $f" >&2; exit 1; }
+          done
+          grep -q 'Apache License' LICENSE
+          echo "shell intact — this repository carries no source yet, and nothing here pretends otherwise"
