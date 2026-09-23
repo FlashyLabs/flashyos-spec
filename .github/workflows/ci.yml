@@ -13,7 +13,7 @@ jobs:
     name: The shell is intact (no code here yet)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: Every file a reader is promised is present
         # Explicit even though this job is ubuntu-only: a matrix added later
         # would break it silently, and the rule is about the script, not the
