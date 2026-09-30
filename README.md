@@ -22,9 +22,18 @@ Apache-2.0 specifications for organisational accountability on the agentic web: 
 
 ## Using it
 
-Nothing to install and nothing to fetch. Every format, its JSON Schema and
-its conformance corpus are files in this repository:
+> **Planned — not present until the format packages are migrated.** The
+> `profiles/`, `schema/` and `src/` trees the commands below read do **not**
+> exist in this repository yet, so nothing in this section is runnable today.
+> Carrying the packages out of the monorepo, with their real history, is the
+> gating step — see [Status](#status). This section describes how the
+> specifications will be used once that operation runs.
 
+The design is that there is nothing to install and nothing to fetch: every
+format, its JSON Schema and its conformance corpus will be plain files in this
+repository, read like this —
+
+<!-- planned -->
 ```bash
 git clone https://github.com/flashylabs/flashyos-spec && cd flashyos-spec
 ls profiles/
@@ -38,7 +47,7 @@ jq '.sets[0] | {accept, refuse}' profiles/frontdoor-1/conformance.json
 Reading them over the wire instead is a convenience, and it is deliberately
 not the documented path: a specification you can only obtain from its author's
 running web server is one whose availability is that author's to withdraw.
-`specs/1` is the index those same files are published through, once this
+`specs/1` is the index those same files will be published through, once this
 repository carries them.
 
 ## The invariants
@@ -60,9 +69,13 @@ convenience at a time.
 No account, no API key, no telemetry, and no network call unless you ask
 for one. If anything here ever needs a service of ours to answer, that is a
 bug — you would be right to refuse a checker with a dependency on the party
-being checked. That applies to the documentation too: every command in this
-file runs against a file in this repository, because a README whose first
-line fetches from our domain is one that stops working when we do.
+being checked. That applies to the documentation too: the design is that every
+documented command runs against a file in this repository, never our domain,
+because a README whose first line fetches from us is one that stops working
+when we do. The commands that will do so are marked *planned* above, because
+the files they read do not land until the packages migrate — a README that
+claimed they ran today would be committing exactly the sin this paragraph
+names.
 
 ## What flashyos-spec is not
 

@@ -14,15 +14,21 @@ never disagree. It declares **five roles**, and five roles are five agents:
 | `adoption` | growth | LOW | Helps an independent adopter reach conformance and records real uptake, because a spec is a standard only after the first adopter and never before. |
 | `review` | risk | HIGH | Reviews a normative change proposal before it lands, because a change to what a valid document is breaks every adopter downstream. |
 
-The charter validates against the estate's dependency-free AAO checker:
+The charter validates against the estate's dependency-free AAO checker. The
+vendored `vendor-aao-check.mjs` is **not present until the format packages are
+migrated**, so the command below is planned, not runnable here today:
 
+<!-- planned -->
 ```bash
 node vendor-aao-check.mjs validate flashyos.roles.json   # 0 issues
 ```
 
 **Becoming a live organisation.** The charter is what a live org is provisioned
-from. From a machine that holds `DATABASE_URL`:
+from. This runs from the flashyos monorepo (`packages/api/…` does not live in
+this shell) on a machine that holds `DATABASE_URL`, so it too is planned rather
+than runnable here:
 
+<!-- planned -->
 ```bash
 npx tsx packages/api/scripts/provision-org-from-charter.ts \
   --charter flashyos.roles.json --tier FREE

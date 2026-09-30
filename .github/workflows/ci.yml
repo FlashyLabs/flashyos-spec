@@ -26,3 +26,16 @@ jobs:
           done
           grep -q 'Apache License' LICENSE
           echo "shell intact — this repository carries no source yet, and nothing here pretends otherwise"
+
+  honesty:
+    name: The docs do not claim a command runs when its file is absent
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # No install: the test is dependency-free (node: builtins only), because
+      # a repository with no package.json has nothing to `npm ci`.
+      - name: The shell's docs are honest about what runs today
+        run: node --test test/honesty.test.mjs

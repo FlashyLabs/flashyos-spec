@@ -25,6 +25,15 @@ contributors.
 
 ## Before you open a pull request
 
+> **Planned — not present until the format packages are migrated.** There is no
+> `package.json` and no test harness in this repository yet, so the two
+> commands below are not runnable today; they are how contributions will be
+> checked once the packages land (see the README's *Status* section). Until
+> then this repository carries the licence, the security policy and the
+> direction, and its one live check is the shell-honesty test that keeps these
+> docs from claiming otherwise (`node --test test/honesty.test.mjs`).
+
+<!-- planned -->
 ```bash
 npm ci
 npm test
